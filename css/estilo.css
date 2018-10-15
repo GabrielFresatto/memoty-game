@@ -1,0 +1,100 @@
+.tabuleiro {
+	background-image: linear-gradient(to bottom, #00c7bd, #ac7dd1);
+	border-radius: .6rem;
+	position: relative;
+	padding: .5rem;
+}
+
+.new-container {
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+button {
+	border: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+h1 {
+	font-size: 2rem;
+    color: #a4a4a4;
+}
+
+.card-game {
+	text-align: center;
+	color: #fff;
+	position: relative;
+	margin: 1rem 0;
+}
+
+.up-side, .down-side {
+	padding: 4rem;
+	border-radius: .6rem;
+	position: absolute;
+	top: 0;
+	left: 15px;
+	transition: all .5s;
+	width: calc(100% - 30px);
+}
+
+.up-side {
+	background: #2a3d4a;
+	opacity: 1;
+	height: 100%;
+}
+
+.down-side {
+	background-color: #18c2ff;
+	font-size: 2rem;
+}
+
+.acertou .down-side {
+	background-color: #3ad0ab !important;
+}
+
+.hide {
+	opacity: 0;
+	z-index: 0 !important;
+	transform: rotateY(180deg);
+}
+
+.show {
+	opacity: 1;
+	z-index: 1 !important;
+}
+
+@media (max-width: 1400px) {
+	.new-container {
+		max-width: 600px;
+	}
+
+
+	.up-side, .down-side {
+		padding: 2rem;
+		border-radius: .6rem;
+		position: absolute;
+		top: 0;
+		left: 15px;
+		transition: all .5s;
+		width: calc(100% - 30px);
+	}
+
+	.card-game {
+		margin: .5rem 0;
+	}
+
+	.card-game:last-child {
+		margin-bottom: 1rem;
+	}
+}
+
+@keyframes error {
+	25% {transform: translateX(15%) translateY(1%) rotate(8deg); background-color: red;}
+	75% {transform: translateX(-15%) translateY(1%) rotate(-8deg); background-color: red;}
+}
+
+.teste {
+	animation-name: error;
+	animation-duration: .6s;
+}

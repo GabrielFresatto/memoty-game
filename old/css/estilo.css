@@ -1,0 +1,46 @@
+.tabuleiro {
+	background-image: linear-gradient(to bottom, #00c7bd, #ac7dd1);
+	border-radius: .6rem;
+	position: relative;
+}
+
+.card-game {
+	text-align: center;
+	color: #fff;
+	position: relative;
+	height: 10rem;
+}
+
+.up-side, .down-side {
+	padding: 5rem;
+	border-radius: .6rem;
+	position: absolute;
+	top: 0;
+	left: 15px;
+	transition: all .5s;
+	width: calc(100% - 30px);
+}
+
+.up-side {
+	background: #2a3d4a;
+	opacity: 1;
+	height: 100%;
+}
+
+.down-side {
+	/* #3ad0ab */
+	background-color: #18c2ff;
+	font-size: 2rem;
+}
+
+.hide {
+	opacity: 0;
+	z-index: 0 !important;
+	transform: rotateY(180deg);
+}
+
+.show {
+	opacity: 1;
+	z-index: 1 !important;
+}
+
