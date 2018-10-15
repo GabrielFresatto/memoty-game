@@ -98,3 +98,29 @@ h1 {
 	animation-name: error;
 	animation-duration: .6s;
 }
+
+/* MOdal win */
+
+.modal-win {
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    width: 55%;
+    z-index: 1;
+    right: 0;
+    left: 0;
+	margin: auto;
+	padding: 2rem;
+	border-radius: 0.5rem;
+	text-align: center;
+	border: 1px solid;
+}
+
+.btn-win {
+	background-color: #3ad0ab;
+	color: #fff;
+    padding: 0.5rem 2rem;
+	border-radius: 0.3rem;
+	margin-top: 1rem;
+}
