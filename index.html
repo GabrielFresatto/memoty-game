@@ -21,9 +21,13 @@
 		<div class="row tabuleiro">
 
 		</div>
-		<article class="modal-win">
-			<h2>Parabéns você ganhou com X movimentos</h2>
-			<button class="btn-win">Jogar novamente</button>
+		<article id="modalWin" class="myModal">
+			<div class="myModal-content">
+				<i class="far fa-check-circle text-center check"></i>
+				<h2>Parabéns, você ganhou!</h2>
+				<p>Ganhou com <span id="moveCountModal"></span> movimentos</p>
+				<button class="btn-win" onclick="playAgain();">Jogar novamente</button>
+			</div>
 		</article>
 		
 	</section>

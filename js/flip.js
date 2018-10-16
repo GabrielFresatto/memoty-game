@@ -80,19 +80,22 @@ function addClickEvent(){
 							twoCardOpen = false;
 							// Se achar todas as cartas
 							if($('.acertou').length === 16){
-								alert('Congrats');
+								// Personaliza o texto de movimentos do modal vitória
+								$('#moveCountModal').text(moveCount);
+								// O modal aparece
+								$('#modalWin').css("display", "block");
 							}
 						}, 500);
 					}else{
 						// Se forem diferentes, volta ao normal
-						firstCard.addClass("teste");
-						secondCard.addClass("teste");
+						firstCard.addClass("erro");
+						secondCard.addClass("erro");
 						setTimeout(function(){
 							flipCard(firstCard, firstCard.siblings());
 							flipCard(secondCard, secondCard.siblings());
 							twoCardOpen = false;
-							firstCard.removeClass("teste");
-							secondCard.removeClass("teste");
+							firstCard.removeClass("erro");
+							secondCard.removeClass("erro");
 						}, 1000);
 					}
 					break;
@@ -102,6 +105,11 @@ function addClickEvent(){
 
 }
 
+// Jogar novamente
+function playAgain(){
+	construirGrid();
+	$('#modalWin').css("display", "none");
+}
 
 // Função pra animar
 function flipCard(elemToHide, elemToShow){
