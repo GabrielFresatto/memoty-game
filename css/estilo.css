@@ -1,3 +1,7 @@
+.starRating {
+	font-size: 1.5rem;
+}
+
 .tabuleiro {
 	background-image: linear-gradient(to bottom, #00c7bd, #ac7dd1);
 	border-radius: .6rem;
@@ -29,7 +33,7 @@ h1 {
 }
 
 .up-side, .down-side {
-	padding: 4rem;
+	padding: 3rem;
 	border-radius: .6rem;
 	position: absolute;
 	top: 0;

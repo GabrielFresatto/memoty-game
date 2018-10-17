@@ -1,36 +1,57 @@
-var tabuleiro = $('.tabuleiro');
-var moveCountElem = $('#moveCount');
-var moveCount = 0;
+const tabuleiro = $('.tabuleiro');
+const moveCountElem = $('#moveCount');
+let moveCount = 0;
+let tempo = '';
 construirGrid();
 
+
+
+/**
+ * @description Constrói o grid com cartas aleatórias e adiciona o evento as cartas
+ */
 function construirGrid(){
+	// Timer
+	let minute = 00;
+	let seconds = 00;
+	setInterval(function (){
+		seconds++;
+		if(seconds === 59) {
+			seconds = 0;
+			minute ++;
+		}
+
+		tempo = minute+ " minuto(s) e "+seconds+" segundo(s).";
+	},1000);
+
+	// Seta 3 estrelas inicial
+	starRating(3);
 	tabuleiro.children().remove();
-	var paresValues = shuffle([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8]);
-	for(valorPar of paresValues){
-		switch (valorPar){
+	const values = shuffle([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8]);
+	for(value of values){
+		switch (value){
 			case 1:
-				tabuleiro.append(construirCarta('<i class="fas fa-anchor"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fas fa-anchor"></i>', value));
 				break;
 			case 2:
-				tabuleiro.append(construirCarta('<i class="fab fa-android"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fab fa-android"></i>', value));
 				break;
 			case 3:
-				tabuleiro.append(construirCarta('<i class="fas fa-angry"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fas fa-angry"></i>', value));
 				break;
 			case 4:
-				tabuleiro.append(construirCarta('<i class="fas fa-bath"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fas fa-bath"></i>', value));
 				break;
 			case 5:
-				tabuleiro.append(construirCarta('<i class="fas fa-bomb"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fas fa-bomb"></i>', value));
 				break;
 			case 6:
-				tabuleiro.append(construirCarta('<i class="fas fa-gamepad"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fas fa-gamepad"></i>', value));
 				break;
 			case 7:
-				tabuleiro.append(construirCarta('<i class="fas fa-heart"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fas fa-heart"></i>', value));
 				break;
 			case 8:
-				tabuleiro.append(construirCarta('<i class="fas fa-music"></i>', valorPar));
+				tabuleiro.append(construirCarta('<i class="fas fa-music"></i>', value));
 				break;
 		}
 	}
@@ -39,10 +60,18 @@ function construirGrid(){
 	moveCountElem.text(moveCount);
 }
 
-// Cria a carta HTML e atribui value 
-function construirCarta(conteudoDaCarta, valorPar){
-	return `<article class="col-md-3 card-game" style="height:${$('.down-side').css('height')}"><div class="up-side show"></div><div class="down-side hide" value="${valorPar}">${conteudoDaCarta}</div></article>`;
+/** 
+ * @description constrói o HTML da carta
+ * @param {HTMLElement} conteudoDaCarta
+ * @param {number} value
+ * */ 
+function construirCarta(conteudoDaCarta, value){
+	return `<article class="col-3 card-game" style="height:${$('.down-side').css('height')}"><div class="up-side show"></div><div class="down-side hide" value="${value}">${conteudoDaCarta}</div></article>`;
 }
+
+/**
+ * @description Evento de click no lado de cima (.up-side) das cartas
+ */
 
 function addClickEvent(){
 	// Todas as cartas
@@ -58,8 +87,8 @@ function addClickEvent(){
 		// Se tiver 2 cartas abertas não abre nenhuma outra
 		if(!twoCardOpen){
 			count++;
-			let upSide = $(this);
-			let downSide = $(this).siblings();
+			const upSide = $(this);
+			const downSide = $(this).siblings();
 			flipCard(upSide, downSide);
 			switch(count) {
 				case 1:
@@ -69,7 +98,17 @@ function addClickEvent(){
 				case 2:
 					count = 0;
 					moveCount++;
+					// Muda o star rating dependendo da quantidade de movimentos
+					switch (moveCount){
+						case 12:
+							starRating(2);
+							break;
+						case 16:
+							starRating(1);
+							break;
+					}
 					moveCountElem.text(moveCount);
+					// Duas cartas estão abertas, isso impede que o usuário clique em outra
 					twoCardOpen = true;
 					secondCard = downSide;
 					// Se os lados forem iguais
@@ -80,10 +119,12 @@ function addClickEvent(){
 							twoCardOpen = false;
 							// Se achar todas as cartas
 							if($('.acertou').length === 16){
+								$('#starRatingModal').text($('.starRating').text());
 								// Personaliza o texto de movimentos do modal vitória
 								$('#moveCountModal').text(moveCount);
 								// O modal aparece
 								$('#modalWin').css("display", "block");
+								$('#tempo').text(tempo);
 							}
 						}, 500);
 					}else{
@@ -135,4 +176,28 @@ function shuffle(array) {
   
 	return array;
 }
+
+/**
+ * @description muda o star rating
+ * @param {HTMLElement} elem elemento que contém as estrelas
+ * @param {number} qtdStar pra quantas estrelas vai 
+ */
+
+function starRating(qtdStar) {
+	const elem = $('.starRating');
+	
+	switch(qtdStar) {
+		case 1:
+			elem.text('★☆☆');
+			break;
+		case 2:
+			elem.text('★★☆');
+			break;
+		case 3:
+			elem.text('★★★');
+			break;
+	}
+}
+
+
 

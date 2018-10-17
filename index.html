@@ -13,7 +13,12 @@
 	<section class="new-container">
 		<h1 class="text-center">Matching Game</h1>
 		<div class="row">
-			<div class="col-md-6 text-center">Moves: <span id="moveCount">0</span></div>
+			<div class="col-md-6 text-center">
+				Moves: <span id="moveCount">0</span> 
+				<div class="starRating">
+
+				</div>
+			</div>
 			<div class="col-md-6 text-center">
 				<button onclick="construirGrid();"><i class="fas fa-undo-alt"></i></button>
 			</div>
@@ -25,7 +30,8 @@
 			<div class="myModal-content">
 				<i class="far fa-check-circle text-center check"></i>
 				<h2>Parabéns, você ganhou!</h2>
-				<p>Ganhou com <span id="moveCountModal"></span> movimentos</p>
+				<p id="starRatingModal"></p>
+				<p>Ganhou com <span id="moveCountModal"></span> movimentos. E levou <span id="tempo"></span></p>
 				<button class="btn-win" onclick="playAgain();">Jogar novamente</button>
 			</div>
 		</article>

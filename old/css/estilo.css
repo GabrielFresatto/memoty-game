@@ -2,35 +2,32 @@
 	background-image: linear-gradient(to bottom, #00c7bd, #ac7dd1);
 	border-radius: .6rem;
 	position: relative;
+	padding: 1rem;
 }
 
 .card-game {
-	text-align: center;
-	color: #fff;
+	padding: 1rem;
 	position: relative;
-	height: 10rem;
-}
-
-.up-side, .down-side {
-	padding: 5rem;
-	border-radius: .6rem;
-	position: absolute;
-	top: 0;
-	left: 15px;
-	transition: all .5s;
-	width: calc(100% - 30px);
 }
 
 .up-side {
 	background: #2a3d4a;
-	opacity: 1;
-	height: 100%;
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .down-side {
-	/* #3ad0ab */
-	background-color: #18c2ff;
-	font-size: 2rem;
+	background: red;
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .hide {
