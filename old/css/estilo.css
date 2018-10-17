@@ -1,43 +1,31 @@
-.tabuleiro {
-	background-image: linear-gradient(to bottom, #00c7bd, #ac7dd1);
-	border-radius: .6rem;
-	position: relative;
-	padding: 1rem;
+*{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.card-game {
-	padding: 1rem;
-	position: relative;
+.container {
+	max-width: 800px;
+	margin: 0 auto;
 }
 
-.up-side {
-	background: #2a3d4a;
-    opacity: 1;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
 }
 
-.down-side {
-	background: red;
-    opacity: 1;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+.col-12 {
+	width: 100%;
 }
 
-.hide {
-	opacity: 0;
-	z-index: 0 !important;
-	transform: rotateY(180deg);
+.col-6 {
+	width: calc(100% / 2);
 }
 
-.show {
-	opacity: 1;
-	z-index: 1 !important;
+.col-3 {
+	width: calc(100% / 4);
 }
 
+.col-4 {
+	width: calc(100% / 3);
+}
