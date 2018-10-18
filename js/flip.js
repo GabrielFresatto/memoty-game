@@ -141,7 +141,7 @@ function addClickEvent(){
 
 }
 
-// Jogar novamente
+// Jogar novamentee
 function playAgain(){
 	construirGrid();
 	$('#modalWin').css("display", "none");
