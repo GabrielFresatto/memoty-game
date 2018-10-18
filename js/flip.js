@@ -1,7 +1,13 @@
 const tabuleiro = $('.tabuleiro');
 const moveCountElem = $('#moveCount');
+let countUp;
+
+/**@description conta os movimentos do jogador */
 let moveCount = 0;
-let tempo = '';
+
+/**@description verifica se o jogo foi ganho, valor inicial = false */
+let win = false;
+
 construirGrid();
 
 
@@ -10,19 +16,7 @@ construirGrid();
  * @description Constrói o grid com cartas aleatórias e adiciona o evento as cartas
  */
 function construirGrid(){
-	// Timer
-	let minute = 00;
-	let seconds = 00;
-	setInterval(function (){
-		seconds++;
-		if(seconds === 59) {
-			seconds = 0;
-			minute ++;
-		}
-
-		tempo = minute+ " minuto(s) e "+seconds+" segundo(s).";
-	},1000);
-
+	startTimer();
 	// Seta 3 estrelas inicial
 	starRating(3);
 	tabuleiro.children().remove();
@@ -119,12 +113,13 @@ function addClickEvent(){
 							twoCardOpen = false;
 							// Se achar todas as cartas
 							if($('.acertou').length === 16){
+								clearInterval(countUp);
 								$('#starRatingModal').text($('.starRating').text());
 								// Personaliza o texto de movimentos do modal vitória
 								$('#moveCountModal').text(moveCount);
 								// O modal aparece
+								$('#tempo').text($('#time').text());
 								$('#modalWin').css("display", "block");
-								$('#tempo').text(tempo);
 							}
 						}, 500);
 					}else{
@@ -200,4 +195,25 @@ function starRating(qtdStar) {
 }
 
 
+function startTimer() {
+	clearInterval(countUp);
+	const timeElem = $('#time');
+	let segundos = 0;
+	let minutos = 0;
+	countUp = setInterval(function(){
+		// Verifica se o jogo ainda não foi ganho
+		segundos++;
+		if(segundos === 59){
+			segundos = 0;
+			minutos++;
+		}
+		timeElem.text((twoCaseNumber(minutos)+':'+twoCaseNumber(segundos)));
+	}, 1000);
+}
 
+
+
+/**@description Converte o número pra ter no minimo 2 casas Ex: 1 -> 01 */
+function twoCaseNumber (number) {
+	return (number < 10) ? '0'+number : number;
+}

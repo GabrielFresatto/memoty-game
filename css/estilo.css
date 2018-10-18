@@ -7,6 +7,19 @@
 	font-size: 1.5rem;
 }
 
+.relative {
+	position: relative;
+}
+
+.centered {
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+    right: 0;
+    margin: auto;
+}
+
 .tabuleiro {
 	background-image: linear-gradient(to bottom, #00c7bd, #ac7dd1);
 	border-radius: .6rem;
@@ -62,6 +75,8 @@ h1 {
 
 .acertou .down-side {
 	background-color: #3ad0ab !important;
+	animation-name: acertou;
+	animation-duration: .7s;
 }
 
 .hide {
@@ -116,6 +131,12 @@ h1 {
 @keyframes error {
 	25% {transform: translateX(15%) translateY(1%) rotate(8deg); background-color: red;}
 	75% {transform: translateX(-15%) translateY(1%) rotate(-8deg); background-color: red;}
+}
+
+@keyframes acertou {
+	15% {transform: scale(.9);}
+	50% {transform: scale(1.1);}
+	75% {transform: scale(1);}
 }
 
 .erro {
